@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('search')">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+
+<div id="Content">
+
+    <div id="BackLink">
+        <a href="/catalog/main">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Product ID</th>
+                <th>Name</th>
+            </tr>
+            <th:block th:each="product : ${productList}">
+                <tr>
+                    <td>
+                        <a th:href="@{product(productId=${product.productId})}" th:utext="${product.description}"></a>
+                    </td>
+                    <td><b>
+                        <a th:href="@{product(productId=${product.productId})}" th:text="${product.productId} "><font color="BLACK"> </font></a>
+                    </b></td>
+                    <td th:text="${product.name}">${product.name}</td>
+                </tr>
+            </th:block>
+            <tr>
+                <td></td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>

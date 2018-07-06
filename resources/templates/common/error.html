@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head th:replace="common/template_head::head('MyPetStore Main')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header th:replace="common/template_menu::header">
+
+</header>
+<!--/*@thymesVar id="message" type="java"*/-->
+<div id="Catalog" th:text="${message}">
+
+</div>
+
+<footer th:replace="common/template_menu::footer">
+
+
+</footer>
+</body>
+</html>

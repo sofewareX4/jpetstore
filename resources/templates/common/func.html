@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script type="text/javascript">
+
+
+    function valid(idList,msList) {
+        for(var i = 0;i<idList.length;i++){
+            if(!judge(idList[i],msList[i])) return false;
+        }
+        return true;
+
+    }
+
+    function judge(id,ms) {
+        var name = document.getElementById(id);
+        var s  = document.getElementById(ms);
+        return view(name,s);
+    }
+    function view(id,s) {
+
+        if(id.value==0)
+        {
+            s.innerText="Not Null";
+            return false;
+        }
+        else {
+            s.innerText = null;
+            return true;
+        }
+    }
+
+</script>

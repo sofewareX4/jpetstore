@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<header th:fragment="check">
+
+<script language="javascript">
+        function myReload() {
+            document.getElementById("CreateCheckCode").src = document
+                    .getElementById("CreateCheckCode").src
+                + "?nocache=" + new Date().getTime();
+        }
+    </script>
+
+    <p>
+
+    <input name="checkCode" type="text" id="checkCode" title="验证码区分大小写"
+           size="8" ,maxlength="4" />
+    <img src="/account/getImage" id="CreateCheckCode" align="middle">
+    </p>
+
+
+    <p>
+    <a href="" onclick="myReload()"  th:text="#{message.user.checkcode}"> change</a>
+
+    </p>
+
+</header>
+
+</html>

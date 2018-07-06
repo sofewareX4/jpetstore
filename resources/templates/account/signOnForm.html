@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head th:replace="common/template_head::head('Cart')">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+
+<div id="Content">
+
+
+
+    <div id="Catalog" >
+    <th:block th:text=" ${Amessage}">
+
+    </th:block>
+
+
+        <a href="/account/signOnForm?lang=en_US">English(US)</a>
+        <a href="/account/signOnForm?lang=zh_CN">简体中文</a>
+
+    <form action="/account/signon" method="post">
+
+
+        <p th:text="#{message.user.tip}" >Please enter your username and password.</p>
+
+        <th:block  th:text="#{message.user.name}" >
+            Username:
+        </th:block>
+        <input type="text"name="username" value="j2ee"><br />
+        <th:block   th:text="#{message.user.password}" >
+            Password:
+        </th:block>
+            <input type="password"  name="password" value="j2ee">
+        </p>
+            <header th:replace="common/checkCode::check">
+            </header>
+        <input type="submit" name="signon" th:value="#{message.user.submit}" />
+
+    </form>
+
+<th:block th:text="#{message.user.toRigsterQ}">
+
+    Need a user name and password?
+</th:block>
+        <a href="/account/newAccountForm"  th:text="#{message.user.toRigster}"  >
+    Register Now!
+        </a>
+</div>
+</div>
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>

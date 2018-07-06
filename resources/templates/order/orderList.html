@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('order')">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+
+<div id="Content">
+
+    <h2>My Orders</h2>
+
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total Price</th>
+        </tr>
+
+        <th:block th:each="order:${orderList}">
+            <tr>
+                <td>
+                    <!--/*@thymesVar id="order" type="java"*/-->
+                    <a th:href="@{/order/viewOrder(orderId=${order.orderId})}" th:text="${order.orderId}"></a>
+                </td>
+                <td>
+                    <th:block th:text="${#dates.format(order.orderDate, 'yyyy/MM/dd HH:mm:ss')}">
+                    </th:block>
+                </td>
+
+                <td th:text="${#numbers.formatDecimal(order.totalPrice, 0, 2)}">
+
+                </td>
+            </tr>
+        </th:block>
+    </table>
+
+
+</div>
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>

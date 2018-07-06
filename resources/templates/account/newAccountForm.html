@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('Cart')">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+
+<div id="Content">
+
+    <script type="text/javascript">
+
+        function uvalid() {
+            return userNamevalid()&&userPwdvalid();
+        }
+
+        function userNamevalid() {
+            var uname=document.getElementById("username");
+
+            var s1=document.getElementById("unameError");
+
+            if(uname.value==0)
+            {
+                s1.innerText="Not Null";
+                return false;
+            }
+            else {
+                s1.innerText = null;
+                return true;
+            }
+
+        }
+
+        function userPwdvalid() {
+            var upwd=document.getElementById("password");
+
+            var uppwd=document.getElementById("repeatedPassword");
+            var s2=document.getElementById("upwdError");
+            if(upwd.value==0)
+            {
+                s2.innerText="Not Null";
+                return false;
+            }
+            else if(upwd.value!=uppwd.value){
+                s2.innerText="Inconformity";
+                return false;
+            }
+            else{
+
+                s2.innerText=null;
+
+                return true;
+            }
+
+
+        }
+    </script>
+
+    <div id="Catalog">
+
+
+        <span style="color: Red;" th:text="${errorMessage}"></span>
+
+
+        <a href="/account/newAccountForm?lang=en_US">English(US)</a>
+        <a href="/account/newAccountForm?lang=zh_CN">简体中文</a>
+
+        <form action="/account/newAccount" method="post" name="userInfo" id="userInfo" onsubmit="return uvalid()&&validAccount()">
+
+            <h3  th:text="#{message.user.info}" >User Information</h3>
+
+            <table>
+                <tr>
+                    <td  th:text="#{message.user.rigN}" >User ID:</td>
+                    <td>
+                        <input type="text" name="username" id="username" onblur="userNamevalid()"/>
+
+                        <span style="color: Red;" id="unameError"></span>
+                        <div id="usernameInfo"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td th:text="#{message.user.rigP}" >New password:</td>
+                    <td><input type="password" name="password" id="password"  /></td>
+                    <span style="color: Red;" id="upwdError"></span>
+                </tr>
+                <tr>
+                    <td th:text="#{message.user.pwdValidate}" >Repeat password:</td>
+                    <td><input type="password" name="repeatedPassword" id="repeatedPassword" onblur="userPwdvalid()"/></td>
+                </tr> <tr>
+            </table>
+
+
+            <!--header th:replace="account/IncludeAccountFields::accountField"-->
+
+            </header>
+
+            <input type="submit"  name="/account/newAccount" th:value="#{message.user.rigster}" />
+
+        </form>
+    </div>
+</div>
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>

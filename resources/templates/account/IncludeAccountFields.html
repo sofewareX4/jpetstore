@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<header th:fragment="accountField">
+
+
+    <h3>Account Information</h3>
+
+
+    <include file="../common/func.jsp">
+    </include>
+
+    <script type="text/javascript">
+
+            function validAccount() {
+                var  idList = new Array("firstName","lastName","email","phone","address1","city","state","zip","country","languagePreference","favouriteCategoryId");
+                var msList = new Array("fNameError","lNameError","eError","pError","aError","cError","sError","zError","coError","langError","favError");
+
+                return valid(idList,msList);
+            }
+
+    </script>
+
+<table>
+    <tr>
+        <td>First name:</td>
+        <td><input type="text" name="firstName" id="firstName" th:value="${account.firstName}"/></td>
+        <span style="color: Red;" id="fNameError"></span>
+    </tr>
+    <tr>
+        <td>Last name:</td>
+        <td><input type="text" name="lastName" id="lastName" th:value="${account.lastName}" /></td>
+        <span style="color: Red;" id="lNameError"></span>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td><input type="text" name="email" id="email" th:value="${account.email}"/></td>
+
+        <span style="color: Red;" id="eError"></span>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td><input type="text" name="phone" id="phone" th:value="${account.phone}"/></td>
+        <span style="color: Red;" id="pError"></span>
+    </tr>
+    <tr>
+        <td>Address 1:</td>
+        <td><input type="text" name="address1"  id="address1" th:value="${account.address1}"/></td>
+
+        <span style="color: Red;" id="aError"></span>
+    </tr>
+    <tr>
+        <td>Address 2:</td>
+        <td><input type="text" name="address2" size="40" th:value="${account.address2}" /></td>
+    </tr>
+    <tr>
+        <td>City:</td>
+        <td><input type="text" name="city" id="city" th:value="${account.city}"/></td>
+
+        <span style="color: Red;" id="cError"></span>
+    </tr>
+    <tr>
+        <td>State:</td>
+        <td><input type="text" name="state" id="state" size="4" th:value="${account.state}"/></td>
+        <span style="color: Red;" id="sError"></span>
+    </tr>
+    <tr>
+        <td>Zip:</td>
+        <td><input type="text" name="zip" id="zip" size="10" th:value="${account.zip}"/></td>
+        <span style="color: Red;" id="zError"></span>
+    </tr>
+    <tr>
+        <td>Country:</td>
+        <td><input type="text" name="country" id="country" size="15" th:value="${account.country}" /></td>
+        <span style="color: Red;" id="coError"></span>
+    </tr>
+</table>
+
+<h3>Profile Information</h3>
+
+<table>
+    <tr>
+        <td>Language Preference:</td>
+        <td><select name="languagePreference" id="languagePreference" >
+            <!-- 循环 -->
+            <option value="Eglish">Eglish</option>
+            <option value="Chinese" selected="selected">Chinese</option>
+
+
+        </select>
+
+            <span style="color: Red;" id="langError"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>Favourite Category:</td>
+        <td><select name="favouriteCategoryId" id="favouriteCategoryId">
+            <option value="FISH">FISH</option>
+            <option selected="selected" value="DOGS">DOGS</option>
+            <option value="REPTILES">REPTILES</option>
+            <option value="CATS">CATS</option>
+            <option value="BIRDS">BIRDS</option>
+        </select>
+
+            <span style="color: Red;" id="favError"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>Enable MyList</td>
+        <td><input type="checkbox" name="listOption" value="1" id="listOption"/></td>
+    </tr>
+    <tr>
+        <td>Enable MyBanner</td>
+        <td><input type="checkbox" name="bannerOption" value="1" id="bannerOption"/></td>
+    </tr>
+
+</table>
+
+</header>
+</html>

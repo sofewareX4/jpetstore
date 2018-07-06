@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="product" type="java"*/-->
+<head th:replace="common/template_head::head('Product:'+${product.name})">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+
+<div id="Content">
+
+<div id="BackLink">
+    <!--/*@thymesVar id="product" type="java"*/-->
+    <a th:href="@{category(categoryId=${product.categoryId})}" th:text="|Return to  ${product.categoryId}|">Return to ${product.categoryId}</a>
+</div>
+
+<div id="Catalog">
+
+    <!--/*@thymesVar id="product" type="java"*/-->
+    <h2 th:text="${product.name}">${product.name}</h2>
+
+    <table>
+        <tr>
+            <th>Item ID</th>
+            <th>Product ID</th>
+            <th>Description</th>
+            <th>List Price</th>
+            <th>&nbsp;</th>
+        </tr>
+        <!-- 循环 -->
+        <!--/*@thymesVar id="itemList" type="java"*/-->
+        <tr th:each="item : ${itemList}">
+            <td>
+                <a th:href="@{item(itemId=${item.itemId})}" th:text="${item.itemId}"></a>
+            </td>
+            <td th:text="${item.product.productId}">
+
+            </td>
+            <!--/*@thymesVar id="product" type="java"*/-->
+            <td>
+                <b th:if="${item.attribute1}!=null" th:text="${item.attribute1}"></b>
+                <b th:if="${item.attribute2}!=null" th:text="${item.attribute2}"></b>
+                <b th:if="${item.attribute3}!=null" th:text="${item.attribute3}"></b>
+                <b th:if="${item.attribute4}!=null" th:text="${item.attribute4}"></b>
+                <b th:if="${item.attribute5}!=null" th:text="${item.attribute5}"></b>
+                <b th:if="${product.name}!=null" th:text="${product.name}"></b>
+
+            </td>
+            </td>
+            <td th:text="'$'+${item.listPrice}">
+
+            </td>
+
+            <td>
+                <a class="Button" th:href="@{../cart/addItemToCart(workingItemId=${item.itemId})}">Add to Cart</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</div>
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>

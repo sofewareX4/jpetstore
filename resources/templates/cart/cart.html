@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('Cart')">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+
+<div id="Content">
+
+    <div id="BackLink">
+        <a href="/catalog/main">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <div id="Cart">
+
+            <h2>Shopping Cart</h2>
+            <form th:action="@{updateCartQuantities}" th:method="post">
+                <table>
+                    <tr>
+                        <th><b>Item ID</b></th>
+                        <th><b>Product ID</b></th>
+                        <th><b>Description</b></th>
+                        <th><b>In Stock?</b></th>
+                        <th><b>Quantity</b></th>
+                        <th><b>List Price</b></th>
+                        <th><b>Total Cost</b></th>
+                        <th>&nbsp;</th>
+                    </tr>
+
+                    <!--/*@thymesVar id="cart" type="java"*/-->
+                    <th:block th:if="${cart.numberOfItems == 0}">
+                        <tr>
+                            <td colspan="8"><b>Your cart is empty.</b></td>
+                        </tr>
+                    </th:block>
+                    <th:block th:each="cartItem : ${cart.cartItems}">
+                        <tr>
+                            <td>
+
+                                <a th:href="@{item(itemId=${cartItem.item.itemId})}" th:text="${cartItem.item.itemId}"></a>
+                            </td>
+                            <!--/*@thymesVar id="cartItem" type="java"*/-->
+                            <td th:text="${cartItem.item.product.productId}">
+
+                            </td>
+                            <td>
+
+                                <!--/*@thymesVar id="cartItem" type="java"*/-->
+                                <th:block th:if="${cartItem.item.attribute1}!=null" th:text="${cartItem.item.attribute1}">
+                                </th:block>
+                                <th:block th:if="${cartItem.item.attribute2}!=null" th:text="${cartItem.item.attribute2}">
+                                </th:block>
+                                <th:block th:if="${cartItem.item.attribute3}!=null" th:text="${cartItem.item.attribute3}">
+                                </th:block>
+                                <th:block th:if="${cartItem.item.attribute4}!=null" th:text="${cartItem.item.attribute4}">
+                                </th:block>
+                                <th:block th:if="${cartItem.item.attribute5}!=null" th:text="${cartItem.item.attribute5}">
+                                </th:block>
+                                <th:block th:if="${cartItem.item.product.name}!=null" th:text="${cartItem.item.product.name}">
+                                </th:block>
+                            </td>
+                            <td th:text="${cartItem.inStock}">
+
+                            </td>
+                            <td>
+                                <input type="text" th:name="${cartItem.item.itemId}" th:value="${cartItem.quantity}" />
+                            </td>
+                            <td th:text="${cartItem.item.listPrice}">
+
+                                <!--fmt:formatNumber value="${cartItem.item.listPrice}" pattern="$#,##0.00" /-->
+                            </td>
+                            <td th:text="${cartItem.total}">
+                                <!--fmt:formatNumber value="${cartItem.total}" pattern="$#,##0.00" /-->
+                            </td>
+                            <td>
+                                <a th:href="@{removeItemFromCart(workingItemId=${cartItem.item.itemId})}" class="Button">Remove</a>
+                            </td>
+                        </tr>
+
+                    </th:block>
+
+                    <tr>
+                        <td colspan="7">
+                            <input type="submit" value="Update Cart"/>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </form>
+
+            <!--/*@thymesVar id="cart" type="java"*/-->
+            <th:block th:if="${cart.numberOfItems>0}" >
+
+                <a href="/order/newOrderForm" class="Button">Proceed to Checkout</a>
+            </th:block>
+        </div>
+
+        <div id="Separator">&nbsp;</div>
+    </div>
+</div>
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>

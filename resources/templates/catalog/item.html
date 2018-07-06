@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="item" type="java"*/-->
+<head th:replace="common/template_head::head('Item:'+${item.itemId})">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+
+<div id="Content">
+
+    <div id="BackLink">
+        <!--/*@thymesVar id="product" type="java"*/-->
+        <a th:href="@{product(productId=${item.product.productId})}" th:text="|Return to ${item.product.productId}|">
+            Return to ${sessionScope.product.productId}
+        </a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <td th:utext="${item.product.description}">
+
+                        </td>
+            </tr>
+            <tr>
+                <td><!--/*@thymesVar id="item" type="java"*/-->
+                <b th:text="${item.itemId} "> ${sessionScope.item.itemId} </b></td>
+            </tr>
+            <tr>
+                <td><b><!--/*@thymesVar id="item" type="java"*/-->
+                    <!--/*@thymesVar id="product" type="java"*/-->
+                <font size="4"></font>
+
+                    <b th:if="${item.attribute1}!=null" th:text="${item.attribute1}"></b>
+                    <b th:if="${item.attribute2}!=null" th:text="${item.attribute2}"></b>
+                    <b th:if="${item.attribute3}!=null" th:text="${item.attribute3}"></b>
+                    <b th:if="${item.attribute4}!=null" th:text="${item.attribute4}"></b>
+                    <b th:if="${item.attribute5}!=null" th:text="${item.attribute5}"></b>
+                    <b th:if="${item.product.name}!=null" th:text="${item.product.name}"></b>
+
+
+                </b></td>
+            </tr>
+            <tr>
+                <!--/*@thymesVar id="product" type="java"*/-->
+                <td th:text="${item.product.name}"></td>
+            </tr>
+            <tr><!--/*@thymesVar id="item" type="java"*/-->
+                <td th:if="${item.quantity<= 0}">
+                    Back ordered.
+                <th:block th:if="${ item.quantity > 0}">
+                    in stock.
+                </th:block>
+                </td>
+            </tr>
+            <tr><!--/*@thymesVar id="item" type="java"*/-->
+                <td th:text="'$'+${item.listPrice}"></td>
+            </tr>
+
+            <tr>
+                <td><!--/*@thymesVar id="item" type="java"*/-->
+                    <a class="Button" th:href="@{../cart/addItemToCart(workingItemId=${item.itemId})}">Add to Cart</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>
